@@ -1,0 +1,39 @@
+{
+  "name": "devops-workshop-app",
+  "version": "1.0.0",
+  "description": "DevOps workshop application voor Les 4",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    
+    "clean": "rm -rf node_modules dist coverage",
+    "install:clean": "npm run clean && npm install",
+    
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    
+    "build": "npm run lint && npm run test",
+    
+    "docker:build": "docker build -t devops-app:latest .",
+    "docker:run": "docker run -p 3000:3000 devops-app:latest",
+    
+    "ci": "npm ci && npm run build && npm run docker:build"
+  },
+  "keywords": ["devops", "ci", "cd", "docker"],
+  "author": "NOVI Hogeschool",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
+    "supertest": "^6.3.3"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
