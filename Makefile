@@ -47,5 +47,5 @@ docker-run:
 	docker run -p 3000:3000 devops-app:latest
 
 # Full CI pipeline
-ci: install lint test docker-build
+ci: clean install lint test docker-build
 	@echo "🎉 CI pipeline completed successfully!"

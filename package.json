@@ -22,7 +22,7 @@
     "docker:build": "docker build -t devops-app:latest .",
     "docker:run": "docker run -p 3000:3000 devops-app:latest",
     
-    "ci": "npm ci && npm run build && npm run docker:build"
+    "ci": "npm run clean && npm ci && npm run build && npm run docker:build"
   },
   "keywords": ["devops", "ci", "cd", "docker"],
   "author": "NOVI Hogeschool",
