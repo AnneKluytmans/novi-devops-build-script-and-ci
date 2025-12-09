@@ -8,6 +8,7 @@ on:
 
 env:
   NODE_ENV: production
+  APP_NAME: devops-app
 
 jobs:
   build:
@@ -33,10 +34,7 @@ jobs:
         run: npm test
 
       - name: Build Docker image
-        env:
-          APP_NAME: ${{ env.APP_NAME }}
         run: |
-          echo "Building $APP_NAME"
           docker build -t ${{ github.event.repository.name }}:${{ github.sha }} .
           docker tag ${{ github.event.repository.name }}:${{ github.sha }} ${{ github.event.repository.name }}:latest
           
