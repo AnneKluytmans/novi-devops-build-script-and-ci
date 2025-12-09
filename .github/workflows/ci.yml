@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 18, 20, 21 ]  #draait je workflow voor verschillende node versies
+        node-version: [ 18, 21 ]  #draait je workflow voor verschillende node versies
     
     steps:
     - name: Checkout code
