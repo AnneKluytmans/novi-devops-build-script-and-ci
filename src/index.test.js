@@ -13,7 +13,7 @@ describe('API Endpoints', () => {
   test('GET /health should return status OK', async () => {
     const response = await request(app).get('/health');
     expect(response.statusCode).toBe(200);
-    expect(response.body.status).toBe('FALSE');
+    expect(response.body.status).toBe('OK');
     expect(response.body).toHaveProperty('uptime');
     expect(response.body).toHaveProperty('timestamp');
   });
