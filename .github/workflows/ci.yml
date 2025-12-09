@@ -13,15 +13,18 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 18, 20 ]  #draait je workflow voor verschillende node versies
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
+    - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: ${{ matrix.node-version }}
         cache: 'npm'    #belangrijk voor snelle builds: cachet node_modules
 
     - name: Install dependencies
@@ -35,7 +38,6 @@ jobs:
 
     - name: Build Docker image
       run: |
-        echo "Building ${{env.APP_NAME }}"
         docker build -t ${{ github.event.repository.name }}:${{ github.sha }} .
         docker tag ${{ github.event.repository.name }}:${{ github.sha }} ${{ github.event.repository.name }}:latest
 
@@ -45,11 +47,11 @@ jobs:
 #        username: ${{ secrets.DOCKER_USERNAME }}
 #        password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Upload coverage  #test coverage bewaren
-      uses: actions/upload-artifact@v4
-      with:
-        name: coverage
-        path: coverage/
+#    - name: Upload coverage  #test coverage bewaren
+#      uses: actions/upload-artifact@v4
+#      with:
+#        name: coverage
+#        path: coverage/
 
 #    - name: Slack notification   #stuurt bericht naar slack bij failed build
 #      if: failure()
