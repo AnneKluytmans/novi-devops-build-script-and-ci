@@ -31,5 +31,5 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t devops-app:${{ github.sha }} .
-        docker tag devops-app:${{ github.sha }} devops-app:latest
+        docker build -t ${{ github.event.repository.name }}:${{ github.sha }} .
+        docker tag ${{ github.event.repository.name }}:${{ github.sha }} ${{ github.event.repository.name }}:latest
