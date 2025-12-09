@@ -7,22 +7,23 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     
-    "clean": "rm -rf node_modules dist coverage",
+    "clean": "echo \"Cleaning...\" && rm -rf node_modules dist coverage",
     "install:clean": "npm run clean && npm install",
     
-    "lint": "eslint src/**/*.js",
+    "lint": "echo \"Linting...\" && eslint src/**/*.js",
     "lint:fix": "eslint src/**/*.js --fix",
     
-    "test": "jest",
+    "test": "echo \"Running tests...\" && jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     
     "build": "npm run lint && npm run test",
-    
-    "docker:build": "docker build -t devops-app:latest .",
+
+    "docker:build": "echo \"Building...\" && docker build -t devops-app:${VERSION:-latest} -t devops-app:latest .",
     "docker:run": "docker run -p 3000:3000 devops-app:latest",
     
-    "ci": "npm run clean && npm ci && npm run build && npm run docker:build"
+    "ci": "npm run clean && npm ci && npm run build && npm run docker:build",
+    "build:timed": "time npm run ci"
   },
   "keywords": ["devops", "ci", "cd", "docker"],
   "author": "NOVI Hogeschool",
