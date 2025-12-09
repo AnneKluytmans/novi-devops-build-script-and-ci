@@ -164,5 +164,6 @@ je-project/
 - [Make Tutorial](https://makefiletutorial.com/)
 - [Jest Documentatie](https://jestjs.io/)
 - [ESLint Rules](https://eslint.org/docs/rules/)
-# CI Test
-PR test
+
+![CI](https://github.com/AnneKluytmans/novi-devops-build-script-and-ci/workflows/CI/badge.svg)
+
