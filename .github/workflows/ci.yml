@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  NODE_ENV: production
+  APP_NAME: mijn-app
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,5 +35,7 @@ jobs:
 
       - name: Build Docker image
         run: |
+          echo "Building ${{env.APP_NAME }}"
           docker build -t ${{ github.event.repository.name }}:${{ github.sha }} .
           docker tag ${{ github.event.repository.name }}:${{ github.sha }} ${{ github.event.repository.name }}:latest
+          
